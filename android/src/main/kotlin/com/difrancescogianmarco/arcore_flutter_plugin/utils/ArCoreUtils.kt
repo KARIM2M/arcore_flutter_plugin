@@ -173,7 +173,29 @@ class ArCoreUtils {
          *
          * Finishes the activity if Sceneform can not run
          */
-        fun checkIsSupportedDeviceOrFinish(activity: Activity): Boolean {
+         
+         
+         private fun checkIsSupportedDeviceOrFinish() : Boolean {
+        if (ArCoreApk.getInstance().checkAvailability(this) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE) {
+            Toast.makeText(this, "Augmented Faces requires ARCore", Toast.LENGTH_LONG).show()
+            finish()
+            return false
+        }
+        val openGlVersionString =  (getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager)
+            ?.deviceConfigurationInfo
+            ?.glEsVersion
+
+        openGlVersionString?.let { s ->
+            if (java.lang.Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
+                Toast.makeText(this, "Sceneform requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
+                    .show()
+                finish()
+                return false
+            }
+        }
+        return true
+    }
+        /*fun checkIsSupportedDeviceOrFinish(activity: Activity): Boolean {
             if (Build.VERSION.SDK_INT < VERSION_CODES.N) {
                 Log.e(TAG, "Sceneform requires Android N or later")
                 Toast.makeText(activity, "Sceneform requires Android N or later", Toast.LENGTH_LONG).show()
@@ -191,6 +213,6 @@ class ArCoreUtils {
                 return false
             }
             return true
-        }
+        }*/
     }
 }
