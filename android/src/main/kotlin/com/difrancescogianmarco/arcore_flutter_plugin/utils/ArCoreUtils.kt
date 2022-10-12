@@ -175,9 +175,9 @@ class ArCoreUtils {
          */
          
          
-         private fun checkIsSupportedDeviceOrFinish() : Boolean {
+         private fun checkIsSupportedDeviceOrFinish(activity: Activity) : Boolean {
         if (ArCoreApk.getInstance().checkAvailability(this) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE) {
-            Toast.makeText(this, "Augmented Faces requires ARCore", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "Augmented Faces requires ARCore", Toast.LENGTH_LONG).show()
             finish()
             return false
         }
@@ -187,7 +187,7 @@ class ArCoreUtils {
 
         openGlVersionString?.let { s ->
             if (java.lang.Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
-                Toast.makeText(this, "Sceneform requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
+                Toast.makeText(activity, "Sceneform requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
                     .show()
                 finish()
                 return false
