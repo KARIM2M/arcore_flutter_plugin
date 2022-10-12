@@ -176,12 +176,12 @@ class ArCoreUtils {
          
          
          fun checkIsSupportedDeviceOrFinish(activity: Activity) : Boolean {
-        if (ArCoreApk.getInstance().checkAvailability(this) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE) {
+        if (ArCoreApk.getInstance().checkAvailability(activity) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE) {
             Toast.makeText(activity, "Augmented Faces requires ARCore", Toast.LENGTH_LONG).show()
             activity.finish()
             return false
         }
-        val openGlVersionString =  (getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager)
+        val openGlVersionString =  (activity.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager)
             ?.deviceConfigurationInfo
             ?.glEsVersion
 
