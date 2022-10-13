@@ -549,6 +549,7 @@ class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMess
                     config.focusMode = Config.FocusMode.AUTO;
                     session.configure(config)
                     arSceneView?.setupSession(session)
+                     debugLog("Session not null.")
                 }
             } catch (ex: UnavailableUserDeclinedInstallationException) {
                 // Display an appropriate message to the user zand return gracefully.
