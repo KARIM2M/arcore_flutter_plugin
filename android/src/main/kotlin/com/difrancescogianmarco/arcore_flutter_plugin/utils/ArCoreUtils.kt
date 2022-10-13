@@ -50,22 +50,23 @@ class ArCoreUtils {
         @Throws(UnavailableException::class)
         fun createArSession(activity: Activity, userRequestedInstall: Boolean, isFrontCamera: Boolean): Session? {
             var session: Session? = null
-            // if we have the camera permission, create the session
-            if (hasCameraPermission(activity)) {
-               // session = when (ArCoreApk.getInstance().requestInstall(activity, userRequestedInstall)) {
-                //    ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
-                  //      Log.i(TAG, "ArCore INSTALL REQUESTED")
-                    //    null
-                    //}
-                    //                    ArCoreApk.InstallStatus.INSTALLED -> {}
-                   // else -> {
-                        if (isFrontCamera) {
-                            Session(activity, EnumSet.of(Session.Feature.FRONT_CAMERA))
-                        } else {
-                            Session(activity)
-                        }
-                   // }
-                }
+             // if we have the camera permission, create the session
+       if (hasCameraPermission(activity)) {
+        if (isFrontCamera) {
+            Session(activity, EnumSet.of(Session.Feature.FRONT_CAMERA))
+        } else {
+            Session(activity)
+        }
+   // }
+           /*session = when (ArCoreApk.getInstance().requestInstall(activity, userRequestedInstall)) {
+               ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
+                   Log.i(TAG, "ArCore INSTALL REQUESTED")
+                   null
+               }
+               //                    ArCoreApk.InstallStatus.INSTALLED -> {}
+               else -> {*/
+               
+           //}
                 session?.let {
                     // Create a camera config filter for the session.
                     val filter = CameraConfigFilter(it)
