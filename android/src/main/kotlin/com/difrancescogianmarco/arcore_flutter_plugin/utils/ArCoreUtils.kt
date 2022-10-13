@@ -52,19 +52,19 @@ class ArCoreUtils {
             var session: Session? = null
             // if we have the camera permission, create the session
             if (hasCameraPermission(activity)) {
-                session = when (ArCoreApk.getInstance().requestInstall(activity, userRequestedInstall)) {
-                    ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
-                        Log.i(TAG, "ArCore INSTALL REQUESTED")
-                        null
-                    }
+               // session = when (ArCoreApk.getInstance().requestInstall(activity, userRequestedInstall)) {
+                //    ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
+                  //      Log.i(TAG, "ArCore INSTALL REQUESTED")
+                    //    null
+                    //}
                     //                    ArCoreApk.InstallStatus.INSTALLED -> {}
-                    else -> {
+                   // else -> {
                         if (isFrontCamera) {
                             Session(activity, EnumSet.of(Session.Feature.FRONT_CAMERA))
                         } else {
                             Session(activity)
                         }
-                    }
+                   // }
                 }
                 session?.let {
                     // Create a camera config filter for the session.
